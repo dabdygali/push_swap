@@ -6,11 +6,12 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 09:51:37 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/23 13:28:19 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:15:56 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "push_swap.h"
 
 /**
  * @brief A programm to sort a stack of integers.

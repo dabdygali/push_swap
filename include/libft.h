@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:36:53 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/23 12:46:19 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:53:56 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ char	*get_next_line(int fd);
 int		cut_n_chars(char **str, ssize_t n, ssize_t len);
 int		ft_checkwarn_argc(int argc, int min_argc, int max_argc);
 int		ft_checkwarn_open_fd(int fd);
-int		ft_str_is_int(char *str);
+int		ft_is_atoi_compatible(char *str);
 
 #endif

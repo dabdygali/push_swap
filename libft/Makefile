@@ -6,7 +6,7 @@
 #    By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 14:51:38 by dabdygal          #+#    #+#              #
-#    Updated: 2023/10/23 12:44:59 by dabdygal         ###   ########.fr        #
+#    Updated: 2023/10/24 14:00:14 by dabdygal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ SRC_FILES 	= ft_memset.c \
 			  get_next_line.c \
 			  ft_checkwarn_argc.c \
 			  ft_checkwarn_open_fd.c \
-			  ft_str_is_int.c
+			  ft_is_atoi_compatible.c
 
 OBJECTS		= $(SRC_FILES:.c=.o)
 

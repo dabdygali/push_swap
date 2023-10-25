@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:23:45 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/23 12:43:47 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:30:00 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	*parse_args(int argc, char *argv[])
 	i = 0;
 	while (i < argc - 1)
 	{
-		if (ft_str_is_int(argv[i + 1]) == 0)
+		if (ft_is_atoi_compatible(argv[i + 1]) == 0)
 		{
 			ft_putstr_fd(ERR_MSG, STDERR_FILENO);
 			free(res);
