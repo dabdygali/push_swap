@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 09:51:37 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/25 15:15:56 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:08:12 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 */
 int	main(int argc, char *argv[])
 {
-	int	*stack_a;
+	t_stack	a;
+	t_stack	b;
 
-	stack_a = parse_args(argc, argv);
-	if (!stack_a)
+	if (!init_stacks(argc, argv, &a, &b))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

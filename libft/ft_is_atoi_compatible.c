@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:44:28 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/25 15:13:49 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:37:30 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	is_within_int(int sign, char *str)
 	while (ft_isdigit(str[i]))
 		i++;
 	if (i > lim)
-		return (0); 
+		return (0);
 	if (i == lim)
 		return (str_is_less(str, max, lim));
 	return (1);
