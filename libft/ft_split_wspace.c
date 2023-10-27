@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_wspace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:58:58 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/27 17:27:26 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/27 19:05:00 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
+#include <stdio.h>
 
-static size_t	calc_size(char const *s, char c)
+static size_t	calc_size(char const *s)
 {
 	size_t	size;
 	size_t	i;
 
-	while (*s == c && *s != 0)
+	while (ft_isspace(*s) && *s != 0)
 		s++;
 	i = 0;
 	size = 1;
@@ -25,28 +27,28 @@ static size_t	calc_size(char const *s, char c)
 		size = 2;
 	while (s[i])
 	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != 0)
+		if (ft_isspace(s[i]) && !ft_isspace(s[i + 1]) && s[i + 1] != 0)
 			size++;
 		i++;
 	}
 	return (size);
 }
 
-static char	*cpy_until_c(char const *s, char c)
+static char	*cpy_until_c(char const *s)
 {
 	size_t	i;
 	char	*str;
 
-	while (*s == c && *s)
+	while (ft_isspace(*s) && *s)
 		s++;
 	i = 0;
-	while (s[i] != c && s[i])
+	while (!ft_isspace(s[i]) && s[i])
 		i++;
 	str = (char *) malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s[i] != c && s[i])
+	while (!ft_isspace(s[i]) && s[i])
 	{
 		str[i] = s[i];
 		i++;
@@ -55,9 +57,9 @@ static char	*cpy_until_c(char const *s, char c)
 	return (str);
 }
 
-static char	*next_str(char const *s, char c)
+static char	*next_str(char const *s)
 {
-	while (*s && ((*s == c && *(s + 1) == c) || *s != c))
+	while (*s && ((ft_isspace(*s) && ft_isspace(*(s + 1))) || !ft_isspace(*s)))
 	{
 		s++;
 	}
@@ -67,15 +69,13 @@ static char	*next_str(char const *s, char c)
 }
 
 /**
- * @brief Splits string into substrings separated by defined character.
- * @details Function splits a string into substrings using a character 
- * as separator. Substrings are terminated by a NULL pointer.
+ * @brief Splits string into substrings separated by white spaces.
+ * @details Function splits a string into substrings using a separators
+ * defined by ft_isspace(). Substrings are terminated by a NULL pointer.
  * @param s A string to be splitted.
- * @param c A separator character.
  * @return A pointer to a first substring. NULL if error occured.
- * @warning NOT TESTED
 */
-char	**ft_split(char const *s, char c)
+char	**ft_split_wspace(char const *s)
 {
 	char	**str_arr;
 	size_t	size;
@@ -83,22 +83,22 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	size = calc_size(s, c);
+	size = calc_size(s);
 	str_arr = (char **) malloc(sizeof(char *) * size);
 	if (!str_arr)
 		return (NULL);
 	i = 0;
-	while (*s == c && *s)
+	while (ft_isspace(*s) && *s)
 		s++;
 	while (i < size - 1)
 	{
-		str_arr[i] = (char *) cpy_until_c(s, c);
+		str_arr[i] = (char *) cpy_until_c(s);
 		if (!str_arr[i++])
 		{
 			free(str_arr);
 			return (NULL);
 		}
-		s = next_str(s, c);
+		s = next_str(s);
 	}
 	str_arr[size - 1] = NULL;
 	return (str_arr);

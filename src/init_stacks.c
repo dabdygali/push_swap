@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:23:45 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/26 14:46:09 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:46:28 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,94 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-/**
- * @brief Converts argument vector to unique integers stack.
- *
- * Function checks strings for are integers within int range, no duplicates and
- * converts them into integer vector. If check failed displays ERR_MSG warning.
- * @param argc Arguments count.
- * @param argv Arguments vector.
- * @return If non-integer or duplicate is found among arguments returns NULL,
- * otherwise returns int pointer to a int vector.
-*/
-static int	*parse_args(int argc, char *argv[])
+static int	no_duplicates(t_arg *top)
 {
-	int	i;
-	int	*res;
+	t_arg	*tmp;
+	t_arg	*tmp1;
 
-	if (argc < 2)
+	if (!top)
+		return (0);
+	tmp = NULL;
+	while (tmp != top)
 	{
-		ft_putstr_fd(ERR_MSG, STDERR_FILENO);
-		return (NULL);
-	}
-	res = (int *) malloc((argc - 1) * sizeof(int));
-	i = 0;
-	while (i < argc - 1)
-	{
-		if (ft_str_is_int(argv[i + 1]) == 0)
+		if (!tmp)
+			tmp = top;
+		tmp1 = top;
+		while (tmp1 != tmp)
 		{
-			ft_putstr_fd(ERR_MSG, STDERR_FILENO);
-			free(res);
-			return (NULL);
+			if (tmp1->arg == tmp->arg)
+				return (0);
+			tmp1 = tmp1->next;
 		}
-		res[i] = ft_atoi(argv[i + 1]);
-		i++;
+		tmp = tmp->next;
 	}
-	return (res);
+	return (1);
 }
 
-int	init_stacks(int argc, char *argv[], t_stack *a, t_stack *b)
+static int	append_node(t_arg **top, char *str)
 {
-	a->head = parse_args(argc, argv);
-	if (!a->head)
+	t_arg	*tmp;
+
+	if (!*top)
+	{
+		*top = (t_arg *) malloc(sizeof(t_arg));
+		if (!*top)
+			return (0);
+		(*top)->arg = ft_atoi(str);
+		(*top)->next = *top;
+		(*top)->prev = *top;
+	}
+	else
+	{
+		tmp = *top;
+		while (tmp->next != *top)
+			tmp = tmp->next;
+		tmp->next = (t_arg *) malloc(sizeof(t_arg));
+		if (!tmp->next)
+			return (0);
+		tmp->next->arg = ft_atoi(str);
+		tmp->next->prev = tmp;
+		tmp->next->next = *top;
+		(*top)->prev = tmp->next;
+	}
+	return (1);
+}
+
+static int	add_arg(t_arg **a, char *str)
+{
+	if (!ft_str_is_int(str) || !append_node(a, str) || !no_duplicates(*a))
+	{
+		free_stack(a);
 		return (0);
-	a->stack = a->head;
-	a->size = argc - 1;
-	b->head = (int *) malloc(sizeof(int) * a->size);
-	if (!b->head)
-		return (0);
-	b->stack = b->head + a->size;
-	b->size = 0;
+	}
+	return (1);
+}
+
+int	init_stacks(int argc, char *argv[], t_arg **a, t_arg **b)
+{
+	int		i;
+	int		j;
+	char	**strv;
+
+	*b = NULL;
+	*a = NULL;
+	i = 1;
+	while (i < argc)
+	{
+		strv = ft_split_wspace(argv[i]);
+		if (!strv)
+			return (0);
+		j = 0;
+		while (strv[j])
+		{
+			if (!add_arg(a, strv[j++]))
+			{
+				free_strv(strv);
+				return (0);
+			}
+		}
+		free_strv(strv);
+		i++;
+	}
+	return (1);
 }

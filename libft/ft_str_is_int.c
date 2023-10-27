@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:44:28 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/26 13:19:59 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:23:55 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_str_is_int(char *str)
 		return (0);
 	while (*str == '0')
 		str++;
-	if (ft_isdigit(*str) && !is_int(sign, str))
+	if (*str != '\0' && (!ft_isdigit(*str) || !is_int(sign, str)))
 		return (0);
 	return (1);
 }

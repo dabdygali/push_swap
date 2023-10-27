@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_v.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:58:58 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/27 17:27:26 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:27:33 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static size_t	calc_size(char const *s, char c)
+static int	is_sep(char const s, char const *c)
+{
+	while (*c)
+	{
+		if (s == *c)
+			return (1);
+		c++;
+	}
+	return (0);
+}
+
+static size_t	calc_size(char const *s, char const *c)
 {
 	size_t	size;
 	size_t	i;
 
-	while (*s == c && *s != 0)
+	while (is_sep(*s, c) && *s != 0)
 		s++;
 	i = 0;
 	size = 1;
@@ -25,28 +36,28 @@ static size_t	calc_size(char const *s, char c)
 		size = 2;
 	while (s[i])
 	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != 0)
+		if (is_sep(s[i], c) && !is_sep(s[i + 1], c) && s[i + 1] != 0)
 			size++;
 		i++;
 	}
 	return (size);
 }
 
-static char	*cpy_until_c(char const *s, char c)
+static char	*cpy_until_c(char const *s, char const *c)
 {
 	size_t	i;
 	char	*str;
 
-	while (*s == c && *s)
+	while (is_sep(*s, c) && *s)
 		s++;
 	i = 0;
-	while (s[i] != c && s[i])
+	while (!is_sep(s[i], c) && s[i])
 		i++;
 	str = (char *) malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s[i] != c && s[i])
+	while (!is_sep(s[i], c) && s[i])
 	{
 		str[i] = s[i];
 		i++;
@@ -55,9 +66,9 @@ static char	*cpy_until_c(char const *s, char c)
 	return (str);
 }
 
-static char	*next_str(char const *s, char c)
+static char	*next_str(char const *s, char const *c)
 {
-	while (*s && ((*s == c && *(s + 1) == c) || *s != c))
+	while (*s && ((is_sep(*s, c) && is_sep(*(s + 1), c)) || !is_sep(*s, c)))
 	{
 		s++;
 	}
@@ -67,28 +78,28 @@ static char	*next_str(char const *s, char c)
 }
 
 /**
- * @brief Splits string into substrings separated by defined character.
- * @details Function splits a string into substrings using a character 
- * as separator. Substrings are terminated by a NULL pointer.
+ * @brief Splits string into substrings separated by defined characters.
+ * @details Function splits a string into substrings using characters in 
+ * string @param c as separators. Substrings are terminated by a NULL pointer.
  * @param s A string to be splitted.
- * @param c A separator character.
+ * @param c A string containing separators.
  * @return A pointer to a first substring. NULL if error occured.
  * @warning NOT TESTED
 */
-char	**ft_split(char const *s, char c)
+char	**ft_split_v(char const *s, char const *c)
 {
 	char	**str_arr;
 	size_t	size;
 	size_t	i;
 
-	if (!s)
+	if (!s || !c)
 		return (NULL);
 	size = calc_size(s, c);
 	str_arr = (char **) malloc(sizeof(char *) * size);
 	if (!str_arr)
 		return (NULL);
 	i = 0;
-	while (*s == c && *s)
+	while (is_sep(*s, c) && *s)
 		s++;
 	while (i < size - 1)
 	{
