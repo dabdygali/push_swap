@@ -6,7 +6,7 @@
 #    By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 15:43:23 by dabdygal          #+#    #+#              #
-#    Updated: 2023/10/27 18:21:28 by dabdygal         ###   ########.fr        #
+#    Updated: 2023/10/30 11:20:19 by dabdygal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,11 @@ CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -fsanitize=address
 SRC_FILES = init_stacks.c \
 			free_mem.c \
 			push_swap_rules_0.c \
-			push_swap_rules_1.c
+			push_swap_rules_1.c \
+			sort_stack_print.c \
+			printed_rules_0.c \
+			printed_rules_1.c \
+			printed_rules_2.c \
 
 MAIN_DIR = .
 

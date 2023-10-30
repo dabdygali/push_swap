@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:39:32 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/27 19:08:48 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:24:14 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ void	free_strv(char **strv)
 	}
 	free(strv);
 	return ;
+}
+
+void	free_all(t_arg **a, t_arg **b)
+{
+	if (a)
+	{
+		if (*a)
+			free_stack(a);
+		free(a);
+	}
+	if (b)
+	{
+		if (*b)
+			free_stack(b);
+		free(b);
+	}
 }

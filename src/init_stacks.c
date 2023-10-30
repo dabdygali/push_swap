@@ -6,13 +6,30 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:23:45 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/27 18:46:28 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:53:03 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 #include <stdlib.h>
+
+int	calc_stack_size(t_arg **x)
+{
+	t_arg	*tmp;
+	int		size;
+
+	if (!x || !*x)
+		return (0);
+	size = 1;
+	tmp = *x;
+	while (tmp->next != *x)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
+}
 
 static int	no_duplicates(t_arg *top)
 {
