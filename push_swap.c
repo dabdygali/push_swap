@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 09:51:37 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/30 14:57:30 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:19:34 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 #include "libft.h"
 #include <stdio.h>
 
-// static void	print_stack(t_arg **a)
-// {
-// 	t_arg	*tmp;
+static void	print_stack(t_arg **a)
+{
+	t_arg	*tmp;
 
-// 	if (!a || !*a)
-// 		return ;
-// 	tmp = NULL;
-// 	while (tmp != *a)
-// 	{
-// 		if (!tmp)
-// 			tmp = *a;
-// 		printf("%i\n", tmp->arg);
-// 		tmp = tmp->next;
-// 	}
-// }
+	if (!a || !*a)
+		return ;
+	tmp = NULL;
+	while (tmp != *a)
+	{
+		if (!tmp)
+			tmp = *a;
+		printf("%i\n", tmp->arg);
+		tmp = tmp->next;
+	}
+}
 
 /**
  * @brief A programm to sort a stack of integers.
@@ -60,6 +60,8 @@ int	main(int argc, char *argv[])
 		small_sort_print(&all);
 	else
 		sort_stack_print(&all);
+	printf("\n\nThe Stack:\n");
+	print_stack(all.a);
 	free_all(all.a, all.b);
 	return (EXIT_SUCCESS);
 }

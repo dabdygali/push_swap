@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:13:39 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/30 14:55:25 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:41:45 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ typedef struct s_all
 	int		size_b;
 }	t_all;
 
+typedef struct s_ops
+{
+	int	rr;
+	int	ra;
+	int	rb;
+	int	rrr;
+	int	rra;
+	int	rrb;
+}	t_ops;
+
+typedef struct s_utils
+{
+	t_ops	ops;
+	int		bmax;
+	int		bmax_p;
+	int		bmin;
+}	t_utils;
+
 int		init_stacks(int argc, char *argv[], t_arg **a, t_arg **b);
 void	swap(t_arg	**x);
 void	swap_swap(t_arg **a, t_arg **b);
@@ -65,6 +83,6 @@ void	rrr(t_all *all);
 void	sort_stack_print(t_all *all);
 void	free_all(t_arg **a, t_arg **b);
 int		calc_stack_size(t_arg **x);
-void	small_sort(t_all *all);
+void	small_sort_print(t_all *all);
 
 #endif
