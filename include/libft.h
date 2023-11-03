@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:36:53 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/27 17:35:56 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:55:21 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ int		ft_str_is_int(char *str);
 char	**ft_split_v(char const *s, char const *c);
 int		ft_isspace(int c);
 char	**ft_split_wspace(char const *s);
+int		ft_min(int x, int y);
+int		ft_dim(int x, int y);
 
 #endif

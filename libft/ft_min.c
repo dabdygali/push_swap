@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printed_rules_2.c                                  :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 10:55:54 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/11/01 11:46:54 by dabdygal         ###   ########.fr       */
+/*   Created: 2023/11/01 13:43:02 by dabdygal          #+#    #+#             */
+/*   Updated: 2023/11/01 18:54:11 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft.h"
-#include <unistd.h>
-
-void	rrr(t_all *all)
+/**
+ * @brief Returns smaller int.
+ * @details Function returns smaller value out of two.
+ * @param x Integer argument to be compared.
+ * @param y Integer argument to be compared.
+ * @return Integer value, the smaller out of two.
+*/
+int	ft_min(int x, int y)
 {
-	rev_rotate_rotate(all->a, all->b);
-	if (all->bmax_p == all->size_b)
-		all->bmax_p = 1;
+	if (x < y)
+		return (x);
 	else
-		all->bmax_p++;
-	ft_putstr_fd(RRR_MSG, STDOUT_FILENO);
-	return ;
+		return (y);
 }

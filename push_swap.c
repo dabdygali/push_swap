@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 09:51:37 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/31 10:19:34 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:11:34 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
 #include "push_swap.h"
 #include "libft.h"
 #include <stdio.h>
-
-static void	print_stack(t_arg **a)
-{
-	t_arg	*tmp;
-
-	if (!a || !*a)
-		return ;
-	tmp = NULL;
-	while (tmp != *a)
-	{
-		if (!tmp)
-			tmp = *a;
-		printf("%i\n", tmp->arg);
-		tmp = tmp->next;
-	}
-}
 
 /**
  * @brief A programm to sort a stack of integers.
@@ -48,6 +32,8 @@ int	main(int argc, char *argv[])
 
 	all.a = (t_arg **) malloc(sizeof(t_arg *));
 	all.b = (t_arg **) malloc(sizeof(t_arg *));
+	*(all.a) = NULL;
+	*(all.b) = NULL;
 	if (!all.a || !all.b || !init_stacks(argc, argv, all.a, all.b) || !*all.a)
 	{
 		ft_putstr_fd(ERR_MSG, STDERR_FILENO);
@@ -56,12 +42,15 @@ int	main(int argc, char *argv[])
 	}
 	all.size_a = calc_stack_size(all.a);
 	all.size_b = 0;
-	if (all.size_a <= 3)
-		small_sort_print(&all);
+	if (is_a_sorted(&all))
+		align_a(&all);
 	else
-		sort_stack_print(&all);
-	printf("\n\nThe Stack:\n");
-	print_stack(all.a);
+	{
+		if (all.size_a <= 3)
+			small_sort_print(&all);
+		else
+			sort_stack_print(&all);
+	}
 	free_all(all.a, all.b);
 	return (EXIT_SUCCESS);
 }

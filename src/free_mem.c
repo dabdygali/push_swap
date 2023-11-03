@@ -6,11 +6,11 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:39:32 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/30 11:24:14 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:08:39 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "push_swap.h"
 #include <stdlib.h>
 
 void	free_stack(t_arg **top)

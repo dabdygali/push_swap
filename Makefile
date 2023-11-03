@@ -6,7 +6,7 @@
 #    By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 15:43:23 by dabdygal          #+#    #+#              #
-#    Updated: 2023/10/30 11:20:19 by dabdygal         ###   ########.fr        #
+#    Updated: 2023/11/03 12:13:07 by dabdygal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ INCLUDE_DIR = include
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
 
 SRC_FILES = init_stacks.c \
 			free_mem.c \
@@ -36,6 +36,11 @@ SRC_FILES = init_stacks.c \
 			printed_rules_0.c \
 			printed_rules_1.c \
 			printed_rules_2.c \
+			sorted_push_b_0.c \
+			sorted_push_b_1.c \
+			sorted_push_b_2.c \
+			set_ops_0.c \
+			align_a.c
 
 MAIN_DIR = .
 

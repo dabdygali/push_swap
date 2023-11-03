@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:35:41 by dabdygal          #+#    #+#             */
-/*   Updated: 2023/10/30 10:50:59 by dabdygal         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:56:36 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	push_a(t_arg **a, t_arg **b)
 {
 	t_arg	*tmp;
 
-	if (!*b)
-		return ;
 	tmp = *b;
 	if ((*b)->next != *b)
 	{
@@ -55,8 +53,10 @@ void	push_a(t_arg **a, t_arg **b)
 	}
 	else
 	{
+		tmp->next = *a;
+		tmp->prev = (*a)->prev;
 		(*a)->prev->next = tmp;
-		(*a)->next->prev = tmp;
+		(*a)->prev = tmp;
 		*a = tmp;
 	}
 }
@@ -65,8 +65,6 @@ void	push_b(t_arg **a, t_arg **b)
 {
 	t_arg	*tmp;
 
-	if (!*a)
-		return ;
 	tmp = *a;
 	if ((*a)->next != *a)
 	{
@@ -84,8 +82,10 @@ void	push_b(t_arg **a, t_arg **b)
 	}
 	else
 	{
+		tmp->next = *b;
+		tmp->prev = (*b)->prev;
 		(*b)->prev->next = tmp;
-		(*b)->next->prev = tmp;
+		(*b)->prev = tmp;
 		*b = tmp;
 	}
 }
